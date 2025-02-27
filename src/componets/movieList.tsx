@@ -9,12 +9,12 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import useCustomNavigation from '../hooks/useCustomNavigation';
 
 var {width, height} = Dimensions.get('window');
 
 const MovieList = ({title, data}) => {
-  const navigation = useNavigation();
+  const navigation = useCustomNavigation('MovieScreen');
   let movieName = 'Ant-man and the wasp: Quantumania';
   return (
     <View style={styles.upcomingContainer}>
@@ -29,7 +29,7 @@ const MovieList = ({title, data}) => {
           return (
             <TouchableWithoutFeedback
               key={index}
-              onPress={() => navigation.navigate('Movie', item)}
+              onPress={() => navigation.navigate('MovieScreen', item)}
               style={styles.cardContainer}>
               <View style={styles.upcomingMovieContainer}>
                 <Image

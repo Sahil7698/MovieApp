@@ -12,18 +12,21 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {ChevronLeftIcon, HeartIcon} from 'react-native-heroicons/outline';
 import LinearGradient from 'react-native-linear-gradient';
+import Cast from '../componets/cast';
+import useCustomNavigation from '../hooks/useCustomNavigation';
 
 var {width, height} = Dimensions.get('window');
+
 const MovieScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useCustomNavigation('MovieScreen');
   const {params: item} = useRoute();
   const [isFavourite, toggleFavourie] = useState(false);
   let movieName = 'Ant-Man and Wasp: Quantumania';
-  const tabData = ['One', 'Two', 'Three'];
-  const [isIndex, setIsIndex] = useState(0);
+  const [cast, setCast] = useState([1, 2, 3, 4, 5]);
   useEffect(() => {
     // call the movie detail api
   }, [item]);
+
   return (
     <ScrollView
       contentContainerStyle={styles.mainContainer}
@@ -50,10 +53,10 @@ const MovieScreen = () => {
               width,
               height: height * 0.4,
               position: 'absolute',
-              bottom: 0,
+              bottom: -2,
             }}
-            start={{x: 0.5, y: 0}}
-            end={{x: 0.5, y: 1}}
+            start={{x: 0.5, y: 0.2}}
+            end={{x: 0.5, y: 0.7}}
           />
         </View>
       </View>
@@ -67,26 +70,29 @@ const MovieScreen = () => {
           }}>
           {movieName}
         </Text>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 20,
+            fontWeight: '300',
+            textAlign: 'center',
+            marginTop: 20,
+          }}>
+          {'Realeased * 2020 * 170 min'}
+        </Text>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 20,
+            fontWeight: '300',
+            marginTop: 20,
+          }}>
+          {
+            'Ant-Man and the Wasp find themselves exploring the Quantum Realm, interacting with strange new creatures and embarking on an adventure that pushes them beyond the limits of what they thought was possible.'
+          }
+        </Text>
       </View>
-      {/* <View
-        style={{
-          width: '100%',
-          height: 80,
-          backgroundColor: 'red',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-        }}>
-        {tabData.map((item, index) => {
-          return (
-            <TouchableOpacity
-            key={index}
-              style={{backgroundColor: isIndex === index ? 'blue' : 'black'}}
-              onPress={() => setIsIndex(index)}>
-              <Text style={{fontSize: 20}}>{item}</Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View> */}
+      <Cast cast={cast} />
     </ScrollView>
   );
 };
