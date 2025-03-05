@@ -4,6 +4,7 @@ export type RootStackParamList = {
   HomeScreen?: {item?: []};
   LoginScreen?: undefined;
   MovieScreen?: undefined;
+  DemoScreen?: undefined;
 };
 
 export type RootRouteProps<RouteName extends keyof RootStackParamList> =
