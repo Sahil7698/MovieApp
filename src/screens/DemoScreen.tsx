@@ -19,7 +19,16 @@ const DemoScreen = () => {
   const [editIndex, setEditIndex] = useState(-1);
   const dispatch = useDispatch();
   const records = useSelector((state: RootState) => state.demoSlice.records);
-  console.log('🚀 ~ DemoScreen ~ ̥:', records);
+  const [colors, setColors] = useState('#d4efdf');
+  const [buttonColor, setButtonColor] = useState('#58d68d');
+
+  const ColorsData = [
+    {id: 1, colorName: '#58d68d', bgColor: '#d4efdf'},
+    {id: 2, colorName: '#f4d03f', bgColor: '#fcf3cf'},
+    {id: 3, colorName: '#f5b041', bgColor: '#fae5d3'},
+    {id: 4, colorName: '#a569bd', bgColor: '#e8daef'},
+    {id: 5, colorName: '#5499c7', bgColor: '#d4e6f1'},
+  ];
 
   const insertRecord = () => {
     if (!name.trim() || !age.trim()) {
@@ -56,7 +65,7 @@ const DemoScreen = () => {
     dispatch(deleteRecord(index));
   };
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: colors}]}>
       <TextInput
         value={name}
         placeholder="Enter Name"
@@ -69,11 +78,34 @@ const DemoScreen = () => {
         onChangeText={v => setAge(v)}
         style={styles.textInputStyle}
       />
-      <TouchableOpacity style={styles.buttonStyle} onPress={insertRecord}>
+      <TouchableOpacity
+        style={[styles.buttonStyle, {backgroundColor: buttonColor}]}
+        onPress={insertRecord}>
         <Text style={styles.buttonText}>
           {editIndex !== -1 ? 'Update Record' : 'Add Record'}
         </Text>
       </TouchableOpacity>
+      <View style={styles.themeColorContainer}>
+        <FlatList
+          data={ColorsData}
+          contentContainerStyle={styles.themeRowColorStyle}
+          renderItem={({item}) => (
+            <TouchableOpacity
+              style={[
+                styles.themeButtonStyle,
+                {
+                  backgroundColor: item?.colorName,
+                },
+                colors === item.bgColor ? styles.selectedTheme : null,
+              ]}
+              onPress={() => {
+                setColors(item?.bgColor);
+                setButtonColor(item?.colorName);
+              }}
+            />
+          )}
+        />
+      </View>
       <FlatList
         data={records}
         style={styles.flatListStyle}
@@ -133,11 +165,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
-    marginTop: 10,
     backgroundColor: '#fff',
     borderRadius: 5,
     borderColor: '#ccc',
     borderWidth: 1,
+    marginBottom: 10,
   },
   recordText: {
     fontSize: 16,
@@ -147,5 +179,24 @@ const styles = StyleSheet.create({
     gap: 10,
     marginHorizontal: 10,
   },
-  flatListStyle: {width: '90%'},
+  flatListStyle: {
+    width: '90%',
+  },
+  themeButtonStyle: {
+    height: 50,
+    width: 50,
+    borderRadius: 30,
+    margin: 10,
+  },
+  themeRowColorStyle: {
+    flexDirection: 'row',
+    height: 50,
+  },
+  themeColorContainer: {
+    height: 70,
+  },
+  selectedTheme: {
+    borderWidth: 3,
+    borderColor: 'black',
+  },
 });

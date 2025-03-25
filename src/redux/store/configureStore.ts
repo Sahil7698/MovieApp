@@ -4,6 +4,7 @@ import {persistReducer, persistStore} from 'redux-persist';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import demoSlice from '../slice/demoSlice';
+import authSlice from '../slice/authSlice';
 
 const persistConfig = {
   key: 'root',
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   demoSlice: demoSlice,
+  auth: authSlice,
 });
 
 export const USER_LOGOUT = 'USER_LOGOUT';
