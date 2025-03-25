@@ -12,7 +12,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {ChevronLeftIcon, HeartIcon} from 'react-native-heroicons/outline';
 import LinearGradient from 'react-native-linear-gradient';
-import Cast from '../componets/cast';
+// import Cast from '../componets/cast';
 import useCustomNavigation from '../hooks/useCustomNavigation';
 
 var {width, height} = Dimensions.get('window');
@@ -92,7 +92,7 @@ const MovieScreen = () => {
           }
         </Text>
       </View>
-      <Cast cast={cast} />
+      {/* <Cast cast={cast} /> */}
     </ScrollView>
   );
 };
