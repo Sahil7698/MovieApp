@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 import React from 'react';
 import Carousal from 'react-native-snap-carousel';
-import {useNavigation} from '@react-navigation/native';
+import useCustomNavigation from '../hooks/useCustomNavigation';
 
 var {width, height} = Dimensions.get('window');
 const TrendingMovies = ({data}) => {
-  const navigation = useNavigation();
+  const navigation = useCustomNavigation('DemoScreen');
   const handleClick = (item: any) => {
-    navigation.navigate('Movie', item);
+    navigation.navigate('MovieScreen', item);
   };
   return (
     <View style={styles.trendingContainer}>

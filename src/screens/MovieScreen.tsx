@@ -22,7 +22,6 @@ const MovieScreen = () => {
   const {params: item} = useRoute();
   const [isFavourite, toggleFavourie] = useState(false);
   let movieName = 'Ant-Man and Wasp: Quantumania';
-  const [cast, setCast] = useState([1, 2, 3, 4, 5]);
   useEffect(() => {
     // call the movie detail api
   }, [item]);

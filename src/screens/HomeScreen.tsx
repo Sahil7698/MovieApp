@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -22,7 +21,7 @@ const HomeScreen = () => {
   return (
     <View style={styles.mainContainer}>
       {/* Search bar */}
-      <SafeAreaView>
+      <View style={{marginTop: 15}}>
         <StatusBar barStyle={'light-content'} backgroundColor={'#1f1f1f'} />
         <View style={styles.searchBarContainer}>
           <Bars3BottomLeftIcon size={30} strokeWidth={2} color={'white'} />
@@ -46,7 +45,7 @@ const HomeScreen = () => {
           {/* Top Rated Movie Row */}
           <MovieList title="Top Rated" data={topRated} />
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </View>
   );
 };
@@ -70,6 +69,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   trendingCarousalSliderStyle: {
-    paddingBottom: 65,
+    paddingBottom: 160,
   },
 });

@@ -1,10 +1,21 @@
-import {RouteProp} from '@react-navigation/native';
+import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 
 export type RootStackParamList = {
   HomeScreen?: {item?: []};
   LoginScreen?: undefined;
   MovieScreen?: undefined;
   DemoScreen?: undefined;
+  ProfileScreen?: undefined;
+  TabStack: NavigatorScreenParams<TabStackParamList>;
+  FeedbackScreen?:undefined;
+};
+
+export type TabStackParamList = {
+  HomeScreen?: undefined;
+  MovieScreen?: undefined;
+  DemoScreen?: undefined;
+  ProfileScreen?: undefined;
+  // ProfileStack?: NavigatorScreenParams<ProfileStackParamList>;
 };
 
 export type RootRouteProps<RouteName extends keyof RootStackParamList> =

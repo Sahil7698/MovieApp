@@ -52,7 +52,7 @@ const DemoScreen = () => {
 
   const handleEdit = (index: number) => {
     const record = records[index];
-    console.log('*&*&**&***', record);
+    console.log('*&*&**&***', record,index);
     setName(record.name);
     setAge(record.age);
     setEditIndex(index);
@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     backgroundColor: '#f5f5f5',
     alignItems: 'center',
+    paddingTop: 30,
   },
   textInputStyle: {
     height: 50,
